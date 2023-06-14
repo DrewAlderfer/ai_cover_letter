@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cover Letter Assistant</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Cover Letter Assistant</h1>
+    <div class="container">
+        <div id="letter">
+            <div class="left">    
+                <form method="POST" action="/">
+                    <label for="company">Company:</label></br>
+                    <input type="text" id="company" name="company" required>
+                    <br>
+                    <label for="position">Position:</label></br>
+                    <input type="text" id="position" name="position" required>
+                    <br>
+                    <label for="description">Description:</label></br>
+                    <input type="text" id="description" name="description" required>
+                    <br>
+                    <input type="submit" name="get_letter" value="Get Letter">
+                </form>
+            </div>
+            <div class="view">
+            {% if response %}
+                <h3>Response:</h3>
+                {{ response }}
+                
+            {% endif %}
+            </div>
+        </div>
+        <div class="right">
+            <h3>Config</h3>
+            <form method="POST" action="/save_config">
+                <label for="c_name">Name:</label><br>
+                <input type="text"  class="c_input" id="c_name" name="name" value="{{ name }}"><br>
+
+                <label for="c_sysmsg">System Message:</label><br>
+                <input type="text"  class="c_input" id="c_sysmsg" name="system_message" value="{{ system_message }}"><br>
+
+                <label for="c_instructions">Instructions:</label><br>
+                <input type="text"  class="c_input" id="c_instructions" name="instructions" value="{{ instructions }}"><br>
+
+                <label for="c_firstmsg">First Message:</label><br>
+                <input type="text"  class="c_input" id="c_firstmsg" name="first_message" value="{{ first_message }}"><br>
+
+                <label for="c_pinfo">Personal Info:</label><br>
+                <input type="text"  class="c_input" id="c_pinfo" name="pinfo" value="{{ pinfo }}"><br>
+
+                <label for="c_template">Letter Template:</label><br>
+                <input type="text"  class="c_input" id="c_template" name="template" value="{{ template }}"><br>
+                <!-- <button type="submit" name="update_config">Update</button>-->
+                <button type="submit" name="save_config">Save Config</button> 
+            </form>
+        </div>
+    </div>
+</body>
+</html>
